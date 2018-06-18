@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <title>Test Popup Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" >
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" >
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript">
+
+    window.onerror = function (error,u,l) {
+        alert("window.onerror\n"+error+"\n"+u+":"+l);
+    };
+
+    function init () {
+        var u = navigator.userAgent;
+        window.hasInputX = u.indexOf('Edge/')>0 || u.indexOf('Trident/')>0;
+        window.isIpad = u.indexOf('iPad;')>0 && u.indexOf('Safari/')>0;
+        if (!("ontouchstart" in document.documentElement)){
+            document.documentElement.className += " no-touch";
+        }
+        document.onselectstart = function(){ // IE - works on IE8 anyway
+            return false;
+        };
+    }
+
+    init();
+
+    function remoteDebug (data) {
+        var request = new XMLHttpRequest();
+        try{
+            request.open("POST", '/api/debug');
+            request.setRequestHeader('Accept', 'application/json');
+            request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+            request.send( JSON.stringify({ data: data }) );
+        } catch(e) {
+            alert(e);
+        }
+    }
+
+    function getInfo () {
+        var s = [];
+        s.push(navigator.userAgent);
+        s.push(document.body.clientHeight+' document.body.clientHeight');
+        s.push(window.innerHeight+' window.innerHeight');
+        s.push(document.documentElement.clientHeight+' document.documentElement.clientHeight');
+        s.push(window.screen.height+' window.screen.height');
+        s.push('');
+        s.push(document.body.clientWidth+' document.body.clientWidth');
+        s.push(window.innerWidth+' window.innerWidth');
+        var t = document.getElementById('showInfo');
+        t.innerHTML = s.join('<br>');
+        //alert(s.join('\n'));
+        remoteDebug(s.join('\r\n'));
+    }
+
+    function hackBigLittle (id) {
+        var t = document.getElementById(id);
+        t.style.display = t.style.display ? '' : 'none';
+        onMod();
+    }
+
+    function setPopup(id) {
+        var pop = document.getElementById(id);
+        var holder = document.getElementById('thePopMid');
+        var hidden = document.getElementById('hiddenThings');
+        hidden.appendChild(holder.children[0]);
+        holder.appendChild(pop);
+        openPop();
+    }
+
+    // PAGE CODE
+
+    function resetInput () {
+        var t = document.getElementById('theDestInput');
+        t.value = '';
+        t.focus();
+        onInputChange(t);
+    }
+
+    function onInputChange (t) {
+        if (t.value==='X') getInfo();
+        if (window.hasInputX) return;
+        var r = document.getElementById('theDestReset');
+        r.style.display = t.value ? '' : 'none';
+    }
+
+    function openPop () {
+        window.remPopSY = window.scrollY ||  window.pageYOffset;
+        window.popIsOpen = true;
+
+        var b = document.getElementById('POPBACK');
+        b.style.display = 'block';
+        var x = document.getElementById('main-content');
+        x.classList.add('POPISOP');
+        //document.body.style.overflow = 'hidden';
+        doMod('open');
+    }
+
+    function closePop () {
+        window.popIsOpen = false;
+        var b = document.getElementById('POPBACK');
+        b.style.display = 'none';
+        var x = document.getElementById('main-content');
+        x.classList.remove('POPISOP');
+        x.style.minHeight = '';
+        //document.body.style.overflow = 'auto';
+
+        window.scrollTo(0,window.remPopSY);
+    }
+
+    function fix(x) { if (!x) return 0; return parseInt(x); } // x.toFixed(2); }
+
+    function doMod (e) {
+        var b = document.getElementById('thePopMid');
+        var r = b.getBoundingClientRect();
+        var wh = document.body.clientHeight;
+        var bot = wh - r.bottom;
+        var tooBig = r.height > wh;
+        var sy = window.scrollY ||  window.pageYOffset;
+        var diff = sy - remPopSY;
+
+        console.log(e,fix(r.top),fix(r.bottom),'PH',fix(r.height),'WH',fix(wh),'B',fix(bot),tooBig,'SY',fix(sy),fix(diff));
+
+        if (wh<=400 || window.innerWidth<=400) { // CSS should switch to full page
+            b.style.top = '';
+            b.style.bottom = '';
+            b.style.position = '';
+            if (e==='open')
+                window.scrollTo(0,0);
+            return;
+        }
+
+        // if document is too short to scroll
+        window.remPopSY = sy; // remember it
+        var m = document.getElementById('main-content');
+        // var mr = m.getBoundingClientRect();
+        m.style.minHeight = r.height + 'px';
+
+        // does popup fit in viewport
+        if (!tooBig) {
+            // var top = sy + (wh-r.height)/4;
+            var top = (wh-r.height)/4;
+            b.style.top = top+'px';
+            b.style.bottom = '';
+            b.style.position = 'fixed';
+        } else {
+            var t = r.top - diff; // TODO out of range
+            if (sy===0 || t>0) { // t<-sy noooo
+                t = 0;
+            } else {
+                var g = wh - r.height;
+                if (t<g) t = g;
+                /*
+                var k = bot - diff;
+                console.log(k);
+                if (k>16) {
+                    t = wh - r.height;
+                }
+                */
+            }
+            console.log('t',t);
+            b.style.top = t + 'px';
+            /*
+            if (sy<200) {
+                b.style.top = '0px';
+                b.style.bottom = '';
+            } else {
+                b.style.top = '';
+                b.style.bottom = '0px';
+            }
+            */
+            b.style.position = 'fixed';
+            /*
+            b.style.position = '';
+            if (r.top>0) {
+                b.style.top = sy+'px';
+            } else if (bot>0) {
+                b.style.top = (sy-r.height+wh)+'px'
+            }
+            */
+        }
+    }
+
+    var ttm;
+
+    function onMod (e) {
+        if (!window.popIsOpen) return;
+        clearTimeout(ttm);
+        ttm = setTimeout( function () {
+            doMod(e);
+        }, 10);
+    }
+
+    window.addEventListener('scroll', function () { onMod('scroll'); } );
+    window.addEventListener('resize', function () { onMod('resize'); } );
+</script>
+
+<style type="text/css">
+    * { font-family:'Open Sans','Arial','Helvetica','Trebuchet MS','sans-serif' !important; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+    html { height: 100%; padding: 0; margin: 0; position: relative; -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+    body { padding: 0; margin: 0;
+        /*background-color: #e0e0e8;*/
+        user-select:none; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; -webkit-touch-callout:none;
+    }
+
+    .header, .footer { background-color: #454298; color: #fff; padding: 12px;
+        flex: none;
+    }
+
+    body,
+    .FLEXBASE {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    #expand-content { flex: 1 0 auto; }
+
+    .POPBACK {
+        position: absolute; left: 0; right: 0; top: 0;
+        bottom: 0;
+        text-align: center;
+    }
+    .POPDARK {
+        position: fixed; left: 0; right: 0; top: 0; bottom: 0; height: 100%;
+        background-color: rgba(0,0,0,0.25);
+        z-index: 21;
+    }
+    .POPMID {
+        padding: 16px 0 16px 0;
+        position: relative;
+        z-index: 22;
+        text-align: center;
+        left: 0; right: 0;
+        pointer-events: none;
+    }
+    .POPUP {
+        display: inline-block;
+        background-color: #fff; padding: 0; border: 1px solid #000;
+        z-index: 23;
+        position: relative;
+        text-align: left;
+        box-sizing: border-box;
+        margin-left: 16px; margin-right: 16px;
+        pointer-events: all;
+        border-radius: 4px;
+        box-shadow: 4px 4px 12px 0 #000;
+    }
+    .POPISOP {
+        color: blue;
+    }
+    .POPHEAD {
+        padding: 8px; background-color: #49528d; color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+        border: 1px solid #fff;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+
+    @media screen and (max-width:400px), screen and (max-height:400px) {
+        .POPBACK { position: relative; height: 100%; }
+        .POPMID { height: 100%; padding: 0; }
+        .POPUP  { min-height: 100%;
+            width: 100%; margin-left: 0; margin-right: 0;
+            border: 0; border-radius: 0; box-shadow: none;
+        }
+        .POPHEAD { border-radius: 0; }
+        .POPISOP { display: none; }
+    }
+
+    .CLOSER {
+        position: absolute; right: 8px; top: 10px;
+        width: 24px;
+        height: 24px;
+        stroke: #fff;
+        fill: #000;
+        transition: transform 0.25s ease-in-out; /* comma sep: color: 1s ease, ... */
+    }
+    .CLOSER:hover { stroke: #fff; fill: #8c000a; transform: rotate(90deg);
+        transition: transform 0.25s ease-in-out; }
+    .CLOSER:active { stroke: #fff; fill: #2586d7;}
+    .CLOSER * { pointer-events: none; }  /* IE11 active style */
+
+    .POPCONTENT {
+        padding: 0 12px;
+    }
+
+    .INP,
+    .DESTINPUT {
+        padding: 8px;
+        box-sizing: border-box;
+        font-size: 17px;
+        -webkit-appearance:none; border-radius:0;
+        border: 1px solid #808080;
+    }
+    .DESTINPUT {
+        width: 100%;
+        border:0; border-bottom:1px solid #a0a0a0;
+    }
+
+    .RESETTER {
+        position: absolute; right: 0; top: 0; width: 32px; height: 40px;
+        /*background-color: #962f0a;*/
+        text-align: center;
+        padding-right: 8px;
+        box-sizing: border-box;
+    }
+    .RESETTER { stroke: #a0a0a0; }
+    .RESETTER:hover { stroke: #8c000a; }
+    .RESETTER:active { stroke: #2586d7; }
+
+    button {
+        padding: 6px 10px;
+        font-size: 14px;
+        min-width: 60px;
+        color: #fff;
+        background-color: #40a040;
+        text-decoration: none;
+        border-radius: 3px;
+        display: inline-block;
+        font-weight: 600;
+        border: 0;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+    }
+    button:focus {
+        /*border: 1px solid #275227;
+        outline: none;*/
+    }
+    .no-touch button:hover {
+        background-color: #275227;
+        color: #c6ffc9;
+        transition: 0.25s ease-in;
+    }
+    .no-touch button:active,
+    button:active {
+        background-color: #006df0;
+        color: #fff;
+        outline: none;
+        transition: 0s;
+    }
+
+    .HBLOCK { display: inline-block; vertical-align: top; }
+    .HBLOCK ~ .HBLOCK { margin-left: 16px; }
+    @media screen and (max-width:600px) {
+        .HBLOCK { display: block; }
+        .HBLOCK ~ .HBLOCK { margin-left: 0; }
+    }
+</style>
+
+</head>
+<body ontouchstart="">
+<div id="main-content" class="FLEXBASE">
+    <header class="header">Popup tester</header>
+    <div id="expand-content">
+        <div style="padding: 0 12px;">
+            <p onclick="getInfo()">Popup test page</p>
+            <p>
+                <button onclick="openPop()">Open Popup</button>
+                <button onclick="setPopup('thePopup')">Pop 1</button>
+                <button onclick="setPopup('theOtherPopup')">Pop 2</button>
+            </p>
+            <div id="showInfo" style="min-height: 60px"></div>
+            <p>
+                <button onclick="openPop()">Middle of Page</button>
+                <button onclick="hackBigLittle('emBiggen')">Biggen</button>
+            </p>
+            <div id="emBiggen" style="height: 600px; display: none"></div>
+            <p>
+                <button onclick="openPop()">Bottom of Page</button>
+                <button onclick="testErr()">Err</button>
+            </p>
+            <p>...</p>
+        </div>
+    </div>
+    <div class="footer">This is the footer</div>
+</div>
+
+<div id="POPBACK" class="POPBACK" style="display: none">
+    <div class="POPDARK" onclick="closePop()"></div>
+    <div class="POPMID" id="thePopMid">
+    <div class="POPUP" id="thePopup">
+        <div class="POPHEAD" onclick="getInfo()">
+            Alternative Destinations
+            <svg class="CLOSER" onclick="closePop()"><use xlink:href="#CloserSVG" href="#CloserSVG"/></svg>
+        </div>
+            <div style="position: relative">
+                <input id="theDestInput" class="DESTINPUT" type="text" onkeyup="onInputChange(this)" onpaste="onInputChange(this)">
+                <svg id="theDestReset" class="RESETTER" style="display: none" onclick="resetInput()"><use xlink:href="#ResetSVG" href="#ResetSVG"/></svg>
+            </div>
+        <div class="POPCONTENT">
+            <p>This is a lot of text which will be read out as part of this popup when the popup is open.</p>
+            <p onclick="hackBigLittle('wider')">
+                <b>Wide or Narrow</b>
+                <span id="wider" style="display: none"> - text can be very wide and can run right across the screen and make the popup very wide indeed so you see like this even</span>
+            </p>
+            <p onclick="hackBigLittle('bigLittle')"><b>Click for Bigger Littler</b></p>
+            <div id="bigLittle" style="display: none">
+                <p>More Stuff</p>
+                <p>More Stuff</p>
+                <p>More Stuff</p>
+                <p>More Stuff</p>
+            </div>
+            <p onclick="hackBigLittle('evenMore')"><b>Click for even more</b></p>
+            <div id="evenMore" style="display: none">
+                <p>Even more...</p><p>Even more...</p><p>Even more...</p><p>Even more...</p><p>Even more...</p><p>Even more...</p>
+            </div>
+            <p>This is a lot of text which will be read out as part of this popup when the popup is open.</p>
+            <p style="text-align: right;"><button onclick="closePop()">Close Popup</button></p>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div id="hiddenThings" style="display: none;">
+    <svg id="CloserSVG" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="11" stroke-width="1.5" stroke="#fff" />
+        <path stroke-width="3" d="M 7 17 L 17 7 M 7 7 L 17 17" />
+    </svg>
+    <svg id="ResetSVG" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-width="3" d="M 7 17 L 17 7 M 7 7 L 17 17" />
+    </svg>
+
+    <div class="POPUP" id="theOtherPopup">
+        <div class="POPHEAD">
+            Sign In
+            <svg class="CLOSER" onclick="closePop()"><use xlink:href="#CloserSVG" href="#CloserSVG"/></svg>
+        </div>
+        <div class="POPCONTENT">
+            <div class="HBLOCK">
+            <p>Enter your email &amp; password:</p>
+            <p>
+                <input class="INP" type="text" placeholder="user id">
+            </p>
+            <p>
+                <input class="INP" type="password" placeholder="password">
+            </p>
+            <p style="text-align: right;">
+                <button onclick="closePop()">Cancel</button>
+                <button onclick="closePop()">Go</button>
+            </p>
+            </div>
+            <div class="HBLOCK">
+            <p>Forgot your password?</p>
+            <p style="text-align: right;">
+                <button onclick="closePop()">Remind Me</button>
+            </p>
+            <hr>
+            <p>Not registered?</p>
+            <p style="text-align: right;">
+                <button onclick="setPopup('thePopup')">Register Me</button>
+            </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
