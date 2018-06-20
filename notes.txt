@@ -1,0 +1,86 @@
+
+Let's just start over
+=====================
+
+Improving an existing product requires an in-depth understanding of the code-base, and knowledge of it's advantages and shortcomings.
+
+This of course takes a degree of effort, which is an investment many developers are not prepared to make.
+
+So it's simpler to just discard everything and start from scratch.
+
+Starting from scratch is usually done because:
+
+	a) the developer wants to do it the same way they did it somewhere else
+	b) there is some npm package (or freeware library) which supposedly 'does it all for you'
+	c) the developer wants to experiment and thinks they have better ideas
+
+
+Undermining
+===========
+
+Undermining is a useful tactic employed by developers who want to do their own thing
+
+Basically you need to find some flaw in the code-base and use this as a lever to render the whole structure worthless
+
+
+
+
+WTF
+===
+
+We have a gigantic modge of code which can be conditionally compiled to produce Canada Staff/Customer, China Staff or AMH, or whatever's next
+
+Code separation is 'poor' - it's hard to see what code impacts what build
+
+Unit tests are JUST CRAP
+You cannot have unit tests specific to your build
+
+I cannot have unit tests for:
+
+	BUILD        | PAGE or FORM      | UNIT TEST
+	----------------------------------------------------------------------------
+	China Staff  | applicant input   | fields [A,B,C] are visible
+	China Staff  | applicant input   | field [B,C] have alpha-numeric validation
+	AMH          | applicant input   | fields [A,C,D,E] are visible
+	AMH          | applicant input   | fields [A,C] have numeric only validation
+
+The unit tests should enforce the SPECIFICATION for each build
+Currently this is not possible
+
+The only way I can see it is to have unit tests in the resource locator and have an equally complicated conditional test process
+
+
+We under-use unit tests and over-use automation tests
+
+If we have 11 identical fields on a page, the unit tests should confirm these are all identical
+The automation tests need to confirm the same, then test one of them to verify it's behaviour - they don't need to test every permutation on every single identical field
+
+Automation tests are expensive in terms of development time, time to change and in execution time on a build
+
+
+DEPENDENCIES
+============
+
+Imagine future possible case
+
+Given I have a component 'ApplicantContactPreferences'
+And there are 15 different builds which depend on this component
+When I make changes to this component
+Then I need to kick off 15 sets of unit and automation tests
+OBVIOUSLY NOT PRACTICAL
+
+THE GLOBAL STRUCTURE NEEDS AN UNDERLYING FRAMEWORK THAT IS STABLE
+CHANGES TO GLOBAL STRUCTURE REQUIRE FULL TESTS ON ALL DEPENDENT LAYERS
+COMPONENTS / FORMS / PAGES all RELY on the GLOBAL STRUCTURE
+
+
+
+THE IE11 ISSUE
+==============
+
+Given the 'fragile' nature of IE11
+I would suggest we have a single automation test as part of the build
+Test that the app's initial page (GAD or StartApp) loads in IE11 and all React scripts have executed correctly
+This has happened before, several times, with IE11
+
+
