@@ -1,9 +1,9 @@
 
 One example I saw suggested
 
-1. write a test to confirm the component renders three buttons
-2. test succeeds, so save this as a snapshot
-3. delete the test and replace is with a snapshot comparison
+	1. write a test to confirm the component renders three buttons
+	2. test succeeds, so save this as a snapshot
+	3. delete the test and replace is with a snapshot comparison
 
 Later on someone makes some change which means it only renders 2 buttons
 
@@ -24,4 +24,9 @@ More positive
 http://randycoulman.com/blog/2016/09/06/snapshot-testing-use-with-care/
 
 I can see the utility in testing real old legacy code
+
+=
+=======================
+
+Git check in
 
