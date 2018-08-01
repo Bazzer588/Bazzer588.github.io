@@ -25,8 +25,33 @@ http://randycoulman.com/blog/2016/09/06/snapshot-testing-use-with-care/
 
 I can see the utility in testing real old legacy code
 
-=
 =======================
 
-Git check in
+To be effective this would need to save snapshots at every state of operation
+
+	Popup is open
+	Popup was closed
+	Personal details - main applicant - china identity card
+	Personal details - spouse - passport
+	Personal details - spouse and borrower - china identity card
+	...etc...
+	Financial details - main applicant - self employed
+	Financial details - spouse - unemployed
+
+Snapshot changes would need to be manually compared on every change, and on every pull request
+
+On components which are self contained I see no point to this whatsoever
+
+=======================
+
+If you're fixing a bug in start app (ie Canada Customer)
+And you need to change something in common
+Will you run the tests against GAD?
+
+=======================
+
+Most bugs are around behaviour, not the shape of the DOM
+
+The only practical benefit I can see is to prevent a dev from introducing a change in a common component
+to fix one application, which then affects another application altogether
 
