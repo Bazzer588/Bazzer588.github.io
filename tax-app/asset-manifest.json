@@ -1,7 +1,14 @@
 {
-  "main.css": "static/css/main.d6da32c3.css",
-  "main.css.map": "static/css/main.d6da32c3.css.map",
-  "main.js": "static/js/main.3d1cafaf.js",
-  "main.js.map": "static/js/main.3d1cafaf.js.map",
-  "static\\media\\logo.svg": "static/media/logo.5d5d9eef.svg"
+  "main.css": "/tax-app/static/css/main.75fc51a8.chunk.css",
+  "main.js": "/tax-app/static/js/main.ae830f04.chunk.js",
+  "main.js.map": "/tax-app/static/js/main.ae830f04.chunk.js.map",
+  "static/js/1.cfb46fa0.chunk.js": "/tax-app/static/js/1.cfb46fa0.chunk.js",
+  "static/js/1.cfb46fa0.chunk.js.map": "/tax-app/static/js/1.cfb46fa0.chunk.js.map",
+  "runtime~main.js": "/tax-app/static/js/runtime~main.f9bda940.js",
+  "runtime~main.js.map": "/tax-app/static/js/runtime~main.f9bda940.js.map",
+  "static/media/logo.svg": "/tax-app/static/media/logo.5d5d9eef.svg",
+  "static/css/main.75fc51a8.chunk.css.map": "/tax-app/static/css/main.75fc51a8.chunk.css.map",
+  "index.html": "/tax-app/index.html",
+  "precache-manifest.d98bd04f3b39932a206735c03b3badd8.js": "/tax-app/precache-manifest.d98bd04f3b39932a206735c03b3badd8.js",
+  "service-worker.js": "/tax-app/service-worker.js"
 }
