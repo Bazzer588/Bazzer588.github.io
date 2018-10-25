@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/tax-app/static/js/runtime~main.f9bda940.js"
   },
   {
-    "revision": "bb4a6f1da201c3ab08ed",
-    "url": "/tax-app/static/js/main.bb4a6f1d.chunk.js"
+    "revision": "1cbc42828f00357339e6",
+    "url": "/tax-app/static/js/main.1cbc4282.chunk.js"
   },
   {
     "revision": "b550eff0a210c20f1407",
     "url": "/tax-app/static/js/1.b550eff0.chunk.js"
   },
   {
-    "revision": "bb4a6f1da201c3ab08ed",
-    "url": "/tax-app/static/css/main.f2983866.chunk.css"
+    "revision": "1cbc42828f00357339e6",
+    "url": "/tax-app/static/css/main.9aa10f97.chunk.css"
   },
   {
-    "revision": "9f1d002c2b12cefcb6980b80afdb3c67",
+    "revision": "961893c7aee0609c09bd6bfdb1a0d66a",
     "url": "/tax-app/index.html"
   }
 ];
