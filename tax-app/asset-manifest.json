@@ -1,10 +1,10 @@
 {
-  "main.css": "/tax-app/static/css/main.45d75a03.chunk.css",
-  "main.js": "/tax-app/static/js/main.f906adf0.chunk.js",
+  "main.css": "/tax-app/static/css/main.9cf2a03b.chunk.css",
+  "main.js": "/tax-app/static/js/main.22bdefde.chunk.js",
   "static/js/1.62a4ff73.chunk.js": "/tax-app/static/js/1.62a4ff73.chunk.js",
   "runtime~main.js": "/tax-app/static/js/runtime~main.f9bda940.js",
   "static/media/logo.svg": "/tax-app/static/media/logo.5d5d9eef.svg",
   "index.html": "/tax-app/index.html",
-  "precache-manifest.472faedfd8da1b8ce69fb0c3eec947ff.js": "/tax-app/precache-manifest.472faedfd8da1b8ce69fb0c3eec947ff.js",
+  "precache-manifest.d85e981daeb3709467b8e633ebb900e0.js": "/tax-app/precache-manifest.d85e981daeb3709467b8e633ebb900e0.js",
   "service-worker.js": "/tax-app/service-worker.js"
 }
