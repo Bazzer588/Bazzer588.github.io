@@ -1,10 +1,12 @@
 {
-  "main.css": "/tax-app/static/css/main.9cf2a03b.chunk.css",
-  "main.js": "/tax-app/static/js/main.89d46b4b.chunk.js",
-  "static/js/1.ba28551d.chunk.js": "/tax-app/static/js/1.ba28551d.chunk.js",
-  "runtime~main.js": "/tax-app/static/js/runtime~main.f9bda940.js",
+  "main.css": "/tax-app/static/css/main.d7adc1b7.chunk.css",
+  "main.js": "/tax-app/static/js/main.99a5fe8a.chunk.js",
+  "CODE_PAGE_1.js": "/tax-app/static/js/CODE_PAGE_1.6d653598.chunk.js",
+  "CODE_PAGE_2.js": "/tax-app/static/js/CODE_PAGE_2.e3301673.chunk.js",
+  "static/js/3.8a3198da.chunk.js": "/tax-app/static/js/3.8a3198da.chunk.js",
+  "runtime~main.js": "/tax-app/static/js/runtime~main.df452215.js",
   "static/media/logo.svg": "/tax-app/static/media/logo.5d5d9eef.svg",
   "index.html": "/tax-app/index.html",
-  "precache-manifest.15ee07f121b72a13dd97ae1b6cb24cb4.js": "/tax-app/precache-manifest.15ee07f121b72a13dd97ae1b6cb24cb4.js",
+  "precache-manifest.5bf7a10de4776dbdb57489c1ba4cbb95.js": "/tax-app/precache-manifest.5bf7a10de4776dbdb57489c1ba4cbb95.js",
   "service-worker.js": "/tax-app/service-worker.js"
 }
