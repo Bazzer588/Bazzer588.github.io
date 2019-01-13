@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/tax-app/static/js/lang_ru.4196b0a8.chunk.js"
   },
   {
-    "revision": "41bbd5bad5436f73f0c2",
-    "url": "/tax-app/static/css/main.6b58faff.chunk.css"
+    "revision": "ef4153f73bda7370cfbd",
+    "url": "/tax-app/static/css/main.beacb4f9.chunk.css"
   },
   {
-    "revision": "0351b6e297e28a49231e",
-    "url": "/tax-app/static/js/CODE_PAGE_1.0351b6e2.chunk.js"
+    "revision": "b5a60b7ba738150637ca",
+    "url": "/tax-app/static/js/CODE_PAGE_1.b5a60b7b.chunk.js"
   },
   {
     "revision": "5d5d9eefa31e5e13a6610d9fa7a283bb",
@@ -28,35 +28,35 @@ self.__precacheManifest = [
     "url": "/tax-app/static/js/lang_de.2ba942d4.chunk.js"
   },
   {
-    "revision": "41bbd5bad5436f73f0c2",
-    "url": "/tax-app/static/js/main.41bbd5ba.chunk.js"
+    "revision": "ef4153f73bda7370cfbd",
+    "url": "/tax-app/static/js/main.ef4153f7.chunk.js"
   },
   {
     "revision": "58aa86634027d9e44a88",
     "url": "/tax-app/static/js/lang_zh.58aa8663.chunk.js"
   },
   {
-    "revision": "11bc30ac6d106c164156",
-    "url": "/tax-app/static/js/lang_he.11bc30ac.chunk.js"
+    "revision": "98645c46c9e194bc4c36",
+    "url": "/tax-app/static/js/lang_he.98645c46.chunk.js"
   },
   {
-    "revision": "11cd2d890bba14e5ac6b",
-    "url": "/tax-app/static/js/POP_1.11cd2d89.chunk.js"
+    "revision": "9d1db4603d9a7021d562",
+    "url": "/tax-app/static/js/POP_1.9d1db460.chunk.js"
   },
   {
-    "revision": "ceed3b44cabaa07b9dd6",
-    "url": "/tax-app/static/js/9.ceed3b44.chunk.js"
+    "revision": "630b352a0824d1a052af",
+    "url": "/tax-app/static/js/9.630b352a.chunk.js"
   },
   {
-    "revision": "a3fe691d0d3d4280f369",
-    "url": "/tax-app/static/js/runtime~main.a3fe691d.js"
+    "revision": "72796fa4c2ea660a1d86",
+    "url": "/tax-app/static/js/runtime~main.72796fa4.js"
   },
   {
     "revision": "d8612d2456b9b02e88c3",
     "url": "/tax-app/static/css/CODE_PAGE_2.4610c18f.chunk.css"
   },
   {
-    "revision": "cbe99a686bb853b8b8e0b5d317d53ec1",
+    "revision": "c3078354b378ceea8989b0b20169025d",
     "url": "/tax-app/index.html"
   }
 ];
