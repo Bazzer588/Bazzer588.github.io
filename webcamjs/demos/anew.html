@@ -14,29 +14,15 @@
 	<script src="../webcam.js"></script>
 </head>
 <body>
-
-	<h1>WebcamJS Test Page</h1>
-	<h3>Demonstrates simple capture &amp; display</h3>
+	<h3>Webcam JS test page
+		<button onclick="setWH(1280,720)" type=button>1280 x 720</button>
+		<button onclick="setWH(720,1280)" type=button>720 x 1280</button>
+	</h3>
 	
 	<div id="my_camera"></div>
 	
 	<!-- First, include the Webcam.js JavaScript Library -->
 	<script type="text/javascript" src="../webcam.js"></script>
-	
-	<!-- Configure a few settings and attach camera -->
-	<script language="JavaScript">
-		Webcam.set({
-			//auto_size: 'true',
-            width: 1280/3,
-            height: 720/3,
-            dest_width: 1280,
-            dest_height: 720,
-			image_format: 'jpeg',
-			jpeg_quality: 90,
-            force_flash: true
-		});
-		Webcam.attach( '#my_camera' );
-	</script>
 	
 	<!-- A button for taking snaps -->
 	<form>
@@ -52,6 +38,29 @@
 
 	<!-- Code to handle taking the snapshot and displaying it locally -->
 	<script language="JavaScript">
+
+		var want_width = 1280;
+		var want_height = 720;
+		var want_cam = -1;
+
+		function setWH (w,h) {
+		    want_width = w;
+		    want_height = h;
+		    setCamera(want_cam);
+		}
+
+        Webcam.set({
+            //auto_size: 'true',
+            width: want_width/3,
+            height: want_height/3,
+            dest_width: want_width,
+            dest_height: want_height,
+            image_format: 'jpeg',
+            jpeg_quality: 90,
+            force_flash: true
+        });
+        Webcam.attach( '#my_camera' );
+
 		function take_snapshot() {
 			// take snapshot and get image data
 			Webcam.snap( function(data_uri) {
@@ -63,14 +72,15 @@
 		}
 
 		function setCamera(i,nm) {
+		    want_cam = i;
             Webcam.set({
 				cameraIndex: i,
 				cameraName: nm,
                 //auto_size: 'true',
-                width: 1280/3,
-                height: 720/3,
-				dest_width: 1280,
-                dest_height: 720,
+                width: want_width/3,
+                height: want_height/3,
+				dest_width: want_width,
+                dest_height: want_height,
                 image_format: 'jpeg',
                 jpeg_quality: 90,
                 force_flash: true
@@ -81,6 +91,12 @@
 		function getCameras () {
 		    Webcam.getCameras();
 		}
+
+
+        window.addEventListener("orientationchange", function() {
+            alert("orientation" + window.innerWidth + ' x ' + window.innerHeight + ' : ' + screen.orientation);
+        });
+
 	</script>
 	
 </body>
