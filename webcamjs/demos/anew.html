@@ -92,9 +92,12 @@
 		    Webcam.getCameras();
 		}
 
-
         window.addEventListener("orientationchange", function() {
-            alert("orientation" + window.innerWidth + ' x ' + window.innerHeight + ' : ' + screen.orientation);
+            console.log("orientation " + window.innerWidth + ' x ' + window.innerHeight + ' : ' + screen.width + ' x ' + screen.height);
+        });
+
+        window.addEventListener("resize", function() {
+            console.log("resize " + window.innerWidth + ' x ' + window.innerHeight + ' : ' + screen.width + ' x ' + screen.height);
         });
 
 	</script>
