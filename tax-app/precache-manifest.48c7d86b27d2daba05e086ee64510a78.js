@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/tax-app/static/js/lang_ru.a87ef573.chunk.js"
   },
   {
-    "revision": "a1f929cfed45954f1b89",
+    "revision": "a818a62172a4630ea6ee",
     "url": "/tax-app/static/css/main.262c6dc4.chunk.css"
   },
   {
@@ -28,8 +28,8 @@ self.__precacheManifest = [
     "url": "/tax-app/static/js/lang_de.03d3ede2.chunk.js"
   },
   {
-    "revision": "a1f929cfed45954f1b89",
-    "url": "/tax-app/static/js/main.a1f929cf.chunk.js"
+    "revision": "a818a62172a4630ea6ee",
+    "url": "/tax-app/static/js/main.a818a621.chunk.js"
   },
   {
     "revision": "37dfc4b389196ae1600c",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/tax-app/static/css/CODE_PAGE_2.56c65569.chunk.css"
   },
   {
-    "revision": "450e6d50d4e6849a45e1948b791b0eff",
+    "revision": "e9fa099d69c38dc821c852970ab80514",
     "url": "/tax-app/index.html"
   }
 ];
