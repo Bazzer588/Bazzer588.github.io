@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/hooky/static/js/runtime~main.440da793.js"
   },
   {
-    "revision": "899b913d3d0f8cda0760",
-    "url": "/hooky/static/js/main.899b913d.chunk.js"
+    "revision": "9ae44c88930d2d70e0bc",
+    "url": "/hooky/static/js/main.9ae44c88.chunk.js"
   },
   {
     "revision": "549cdd6bd6ad42a7c581",
     "url": "/hooky/static/js/2.549cdd6b.chunk.js"
   },
   {
-    "revision": "899b913d3d0f8cda0760",
-    "url": "/hooky/static/css/main.548b7c3f.chunk.css"
+    "revision": "9ae44c88930d2d70e0bc",
+    "url": "/hooky/static/css/main.dff92dce.chunk.css"
   },
   {
-    "revision": "0f0fc7b66956fcea160060ee0b1b5ec3",
+    "revision": "ba9b4ab7d8652306fb879224c22451d6",
     "url": "/hooky/index.html"
   }
 ];
