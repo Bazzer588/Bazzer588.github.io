@@ -1,14 +1,14 @@
 {
-  "main.css": "/hooky/static/css/main.dff92dce.chunk.css",
-  "main.js": "/hooky/static/js/main.9ae44c88.chunk.js",
-  "main.js.map": "/hooky/static/js/main.9ae44c88.chunk.js.map",
+  "main.css": "/hooky/static/css/main.da05f26e.chunk.css",
+  "main.js": "/hooky/static/js/main.e02f4a6b.chunk.js",
+  "main.js.map": "/hooky/static/js/main.e02f4a6b.chunk.js.map",
   "runtime~main.js": "/hooky/static/js/runtime~main.440da793.js",
   "runtime~main.js.map": "/hooky/static/js/runtime~main.440da793.js.map",
-  "static/js/2.549cdd6b.chunk.js": "/hooky/static/js/2.549cdd6b.chunk.js",
-  "static/js/2.549cdd6b.chunk.js.map": "/hooky/static/js/2.549cdd6b.chunk.js.map",
+  "static/js/2.62eb81ac.chunk.js": "/hooky/static/js/2.62eb81ac.chunk.js",
+  "static/js/2.62eb81ac.chunk.js.map": "/hooky/static/js/2.62eb81ac.chunk.js.map",
   "index.html": "/hooky/index.html",
-  "precache-manifest.a674a62212bfc2f04d29ea0516afe82a.js": "/hooky/precache-manifest.a674a62212bfc2f04d29ea0516afe82a.js",
+  "precache-manifest.f83e738040871cc7d112d9f276d39648.js": "/hooky/precache-manifest.f83e738040871cc7d112d9f276d39648.js",
   "service-worker.js": "/hooky/service-worker.js",
-  "static/css/main.dff92dce.chunk.css.map": "/hooky/static/css/main.dff92dce.chunk.css.map",
+  "static/css/main.da05f26e.chunk.css.map": "/hooky/static/css/main.da05f26e.chunk.css.map",
   "static/media/logo.svg": "/hooky/static/media/logo.5d5d9eef.svg"
 }
